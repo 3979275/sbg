@@ -69,25 +69,25 @@
 										<table class="table table-striped table-hover table-bordered dataTable no-footer" id="editabledatatable" role="grid" aria-describedby="editabledatatable_info">
 											<thead class="bordered-darkorange">
 												<tr role="row">
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 0.2%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 0.1%;">
 														<label style="margin-bottom: 0;">
-															<input type="checkbox" class="colored-success checkall">
+															<input type="checkbox" class="checkall">
 															<span class="text"></span>
 														</label>
 													</th>
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 1%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 0.3%;">
 														ID
 													</th>
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 2%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 1%;">
 														品牌LOGO
 													</th>
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 3%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 2%;">
 														中文名称
 													</th>
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 3%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 2%;">
 														英文名称
 													</th>
-													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 6%;">
+													<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 12%;">
 														品牌简介
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="editabledatatable" rowspan="1" colspan="1" aria-label="order : activate to sort column descending" style="width: 1%;" aria-sort="">
@@ -109,22 +109,32 @@
 													<tr role="row" class="odd">
 														<td>
 															<label>
-																<input type="checkbox" class="colored-success checks" value="{{ $v->id }}">
+																<input type="checkbox" class="checks" value="{{ $v->id }}">
 																<span class="text"></span>
 															</label>
 														</td>
-														<td class="center ">{{ $k }}</td>
-														<td class="sorting_1">{{ $v->id }}</td>
-														<td class="center ">{{ $v->id }}</td>
-														<td class="center ">{{ $v->id }}</td>
-														<td class="center ">{{ $v->id }}</td>
-														<td class="center ">{{ $v->id }}</td>
-														<td class="center ">{{ $v->id }}</td>
+														<td class="center ">{{ $k+1 }}</td>
+														<td class="sorting_1"><img src="{{ $v->origin_img }}" alt="" width="50"></td>
+														<td class="center ">{{ $v->zhname }}</td>
+														<td class="center ">{{ $v->cnname }}</td>
+														<td class="center ">{{ $v->introduction }}</td>
+														<td class="center ">{{ $v->sort }}</td>
+														<td class="center ">
+															@if($v->is_show == 1)
+																<button class="btn btn-success btn-xs status" data-id="{{ $v->id }}" data-status="{{ $v->is_show }}" data-field="is_show">
+																	<i class="fa-fw fa fa-check-square-o"></i> 是
+																</button>
+															@else
+																<button class="btn btn-warning btn-xs status" data-id="{{ $v->id }}" data-status="{{ $v->is_show }}" data-field="is_show">
+																	<i class="fa-fw fa fa-ban"></i> 否
+																</button>
+															@endif
+														</td>
 														<td>
 															<a href="javascript:void(0);" class="btn btn-magenta shiny btn-xs view" data-id="{{ $v->id }}">
 																<i class="fa fa-neuter"></i> 详情
 															</a>
-															<a href="Product/{{ $v->id }}/edit" class="btn btn-info shiny btn-xs edit">
+															<a href="/Admin/Brand/{{ $v->id }}/edit" class="btn btn-info shiny btn-xs edit">
 																<i class="fa fa-edit"></i> 编辑
 															</a>
 															<a href="javascript:void(0);" class="btn btn-danger shiny btn-xs delete" data-id="{{ $v->id }}" data-page="{$p}">
@@ -155,4 +165,33 @@
 						</div>
 					</div>
 
+@endsection
+
+@section('javascript')
+<script>
+	$('#del-all').on('click', function(){
+		var ids = '';
+		$('.checks:checked').each(function(){
+			ids += $(this).val() + '-';
+		});
+	})
+
+	$('.checkall').on('click', function(){
+		if($(this).is(':checked')){
+			$('.checks').prop('checked', 'checked');
+			$('tr').addClass('active');
+		} else {
+			$('.checks').removeAttr('checked');
+			$('tr').removeClass('active');
+		}
+	})
+
+	$('.checks').on('click', function(){
+		if($(this).is(':checked')){
+			$(this).parents('tr').addClass('active');
+		} else {
+			$(this).parents('tr').removeClass('active');
+		}
+	})
+</script>
 @endsection

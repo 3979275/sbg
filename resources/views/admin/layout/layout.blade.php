@@ -3,9 +3,9 @@
 <!-- Head -->
 <head>
 	<meta charset="utf-8" />
-	<title>sbg</title>
+	<title>四季优美</title>
 
-	<meta name="description" content="Dashboard" />
+	<meta name="description" content="四季优美" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -53,7 +53,7 @@
 			<div class="navbar-container">
 				<!-- Navbar Barnd -->
 				<div class="navbar-header pull-left">
-					<span class="navbar-brand navbar-span">SBG</span>
+					<span class="navbar-brand navbar-span">四季优美</span>
 				   <!-- <a href="#" class="navbar-brand">
 						<small>
 							<img src="/assets/img/logo.png" alt="" />

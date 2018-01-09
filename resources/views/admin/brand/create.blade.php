@@ -10,7 +10,7 @@
 								</div>
 								<div class="widget-body">
 									<div id="horizontal-form">
-										<form class="form-horizontal" role="form" action="" method="POST" enctype="multipart/form-data">
+										<form class="form-horizontal" role="form" action="/Admin/Brand/store" method="POST" enctype="multipart/form-data">
 											{{ csrf_field() }}
 											<div class="form-group">
 												<label for="inputzhname" class="col-sm-2 control-label no-padding-right">中文名称</label>
@@ -33,7 +33,7 @@
 											<div class="form-group">
 												<label for="LOGO" class="col-sm-2 control-label no-padding-right">品牌LOGO</label>
 												<div class="col-sm-4">
-													<span class="file-input btn btn-block btn-default btn-file">
+													<span class="file-input btn btn-azure btn-file">
 														本地预览 <input type="file" name="origin_img" multiple="">
 													</span>
 												</div>

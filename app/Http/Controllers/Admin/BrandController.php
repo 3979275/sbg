@@ -14,14 +14,13 @@ class BrandController extends Controller
 	public function index()
 	{
 		$title = '品牌列表';
-		$data = [
-			'list' => [],
-			'count' => 0
-		];
+
+		$datas = \App\Model\Brand::all();
+		$count = 0;
 		$page = '';
 		return view('admin.brand.index', [
-			'datas' => $data['list'],
-			'count' => $data['count'],
+			'datas' => $datas,
+			'count' => $count,
 			'page' => $page,
 			'title' => $title
 		]);
@@ -48,31 +47,40 @@ class BrandController extends Controller
 	}
 
 	/**
+	 * [store description]
+	 * @return [type] [description]
+	 */
+	public function store(Request $Request)
+	{
+		var_dump($Request->all());
+	}
+
+	/**
 	 * [edit description]
 	 * @return [type] [description]
 	 */
-	public function edit()
+	public function edit($id)
 	{
 		$title = '编辑品牌';
-		$data = [
-			'zhname' => '四季优美',
-			'cnname' => 'sijiyoumei',
-			'sort' => 100,
-			'origin_img' => '',
-			'introduction' => '四季优美是XXX'
-		];
+		$data = \App\Model\Brand::find($id);
 		return view('admin.brand.edit', [
 			'data' => $data,
 			'title' => $title
 		]);
 	}
 
+	public function update($id)
+	{
+
+	}
+
 	/**
 	 * [delete description]
 	 * @return [type] [description]
 	 */
-	public function delete()
+	public function delete($id)
 	{
-
+		$Brand = \App\Model\Brand::find($id);
+		$Brand->delete();
 	}
 }
